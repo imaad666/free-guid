@@ -10,7 +10,7 @@ const usedGuids = new Set();
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static('.'));
 
 // Generate a new unique GUID
 app.post('/api/generate', (req, res) => {
