@@ -47,12 +47,12 @@ generateBtn.addEventListener('click', async () => {
             guidDisplay.textContent = currentGuid;
             copyBtn.disabled = false;
         } else {
-            guidDisplay.textContent = 'Error generating GUID';
+            guidDisplay.textContent = `Error: ${data.error || 'Failed to generate GUID'}`;
             copyBtn.disabled = true;
         }
     } catch (error) {
         console.error('Error:', error);
-        guidDisplay.textContent = 'Error: Could not connect to server';
+        guidDisplay.textContent = `Error: ${error.message || 'Could not connect to server'}`;
         copyBtn.disabled = true;
     } finally {
         generateBtn.disabled = false;
@@ -64,17 +64,16 @@ generateBtn.addEventListener('click', async () => {
 copyBtn.addEventListener('click', async () => {
     if (!currentGuid) return;
     
-    const copyIcon = copyBtn.querySelector('.copy-icon');
-    const checkIcon = copyBtn.querySelector('.check-icon');
-    
     try {
         await navigator.clipboard.writeText(currentGuid);
-        copyIcon.style.display = 'none';
-        checkIcon.style.display = 'block';
+        
+        // Show "Copied to clipboard" message in the bar
+        const originalText = guidDisplay.textContent;
+        guidDisplay.textContent = 'Copied to clipboard';
+        
         setTimeout(() => {
-            copyIcon.style.display = 'block';
-            checkIcon.style.display = 'none';
-        }, 1000);
+            guidDisplay.textContent = originalText;
+        }, 1500);
     } catch (error) {
         console.error('Failed to copy:', error);
         // Fallback for older browsers
@@ -84,11 +83,13 @@ copyBtn.addEventListener('click', async () => {
         textArea.select();
         document.execCommand('copy');
         document.body.removeChild(textArea);
-        copyIcon.style.display = 'none';
-        checkIcon.style.display = 'block';
+        
+        // Show "Copied to clipboard" message in the bar
+        const originalText = guidDisplay.textContent;
+        guidDisplay.textContent = 'Copied to clipboard';
+        
         setTimeout(() => {
-            copyIcon.style.display = 'block';
-            checkIcon.style.display = 'none';
-        }, 1000);
+            guidDisplay.textContent = originalText;
+        }, 1500);
     }
 });
