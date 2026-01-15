@@ -18,7 +18,12 @@ generateBtn.addEventListener('click', async () => {
         generateBtn.disabled = true;
         generateBtn.textContent = 'Generating...';
         
-        const response = await fetch('http://localhost:3000/api/generate', {
+        // Use relative path for Vercel, or localhost for local dev
+        const apiUrl = window.location.hostname === 'localhost' 
+            ? 'http://localhost:3000/api/generate' 
+            : '/api/generate';
+        
+        const response = await fetch(apiUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
