@@ -14,8 +14,8 @@ body {
 }
 
 body.light-mode {
-    background-color: #ffffff;
-    color: #000000;
+    background-color: #D4C4B0;
+    color: #3D2817;
 }
 
 body.dark-mode {
@@ -41,10 +41,20 @@ body.dark-mode {
 .theme-toggle {
     background: none;
     border: none;
-    font-size: 24px;
     cursor: pointer;
     padding: 10px;
     transition: transform 0.2s ease;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-toggle svg {
+    width: 24px;
+    height: 24px;
+    transition: all 0.3s ease;
 }
 
 .theme-toggle:hover {
@@ -63,7 +73,7 @@ body.dark-mode {
 }
 
 body.light-mode .guid-bar {
-    border-color: #000000;
+    border-color: #3D2817;
 }
 
 body.dark-mode .guid-bar {
@@ -82,11 +92,21 @@ body.dark-mode .guid-bar {
 .copy-btn {
     background: none;
     border: none;
-    font-size: 20px;
     cursor: pointer;
-    padding: 5px 10px;
+    padding: 8px;
     transition: opacity 0.3s ease, transform 0.2s ease;
     opacity: 0.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+}
+
+.copy-btn svg {
+    width: 20px;
+    height: 20px;
+    transition: all 0.3s ease;
 }
 
 .copy-btn:hover:not(:disabled) {
@@ -106,6 +126,7 @@ body.dark-mode .guid-bar {
     padding: 15px 40px;
     font-size: 16px;
     font-weight: 500;
+    font-family: 'Courier New', monospace;
     border: 2px solid;
     border-radius: 50px;
     cursor: pointer;
@@ -114,13 +135,13 @@ body.dark-mode .guid-bar {
 }
 
 body.light-mode .generate-btn {
-    border-color: #000000;
-    color: #000000;
+    border-color: #3D2817;
+    color: #3D2817;
 }
 
 body.light-mode .generate-btn:hover {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: #3D2817;
+    color: #D4C4B0;
 }
 
 body.dark-mode .generate-btn {

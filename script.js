@@ -9,7 +9,17 @@ let currentGuid = null;
 themeToggle.addEventListener('click', () => {
     document.body.classList.toggle('light-mode');
     document.body.classList.toggle('dark-mode');
-    themeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+    
+    const moonIcon = themeToggle.querySelector('.moon-icon');
+    const sunIcon = themeToggle.querySelector('.sun-icon');
+    
+    if (document.body.classList.contains('dark-mode')) {
+        moonIcon.style.display = 'none';
+        sunIcon.style.display = 'block';
+    } else {
+        moonIcon.style.display = 'block';
+        sunIcon.style.display = 'none';
+    }
 });
 
 // Generate GUID
@@ -54,12 +64,16 @@ generateBtn.addEventListener('click', async () => {
 copyBtn.addEventListener('click', async () => {
     if (!currentGuid) return;
     
+    const copyIcon = copyBtn.querySelector('.copy-icon');
+    const checkIcon = copyBtn.querySelector('.check-icon');
+    
     try {
         await navigator.clipboard.writeText(currentGuid);
-        const originalText = copyBtn.textContent;
-        copyBtn.textContent = '✓';
+        copyIcon.style.display = 'none';
+        checkIcon.style.display = 'block';
         setTimeout(() => {
-            copyBtn.textContent = originalText;
+            copyIcon.style.display = 'block';
+            checkIcon.style.display = 'none';
         }, 1000);
     } catch (error) {
         console.error('Failed to copy:', error);
@@ -70,9 +84,11 @@ copyBtn.addEventListener('click', async () => {
         textArea.select();
         document.execCommand('copy');
         document.body.removeChild(textArea);
-        copyBtn.textContent = '✓';
+        copyIcon.style.display = 'none';
+        checkIcon.style.display = 'block';
         setTimeout(() => {
-            copyBtn.textContent = '📋';
+            copyIcon.style.display = 'block';
+            checkIcon.style.display = 'none';
         }, 1000);
     }
 });
