@@ -66,6 +66,11 @@ body.dark-mode {
     transition: all 0.3s ease;
 }
 
+body.dark-mode .theme-toggle svg {
+    stroke: #ffffff;
+    color: #ffffff;
+}
+
 .theme-toggle:hover {
     transform: scale(1.1);
 }
@@ -116,6 +121,11 @@ body.dark-mode .guid-bar {
     width: 20px;
     height: 20px;
     transition: all 0.3s ease;
+}
+
+body.dark-mode .copy-btn svg {
+    stroke: #ffffff;
+    color: #ffffff;
 }
 
 .copy-btn:hover:not(:disabled) {
